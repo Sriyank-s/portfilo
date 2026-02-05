@@ -109,11 +109,11 @@
 
         /* --- Hero Section --- */
         header {
-            min-height: 100vh;
+            min-height: 50vh; /* Reduced from 80vh to remove extra gap */
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 0 15%;
+            padding: 100px 15% 0 15%; /* Added top padding for nav clearance */
             background: radial-gradient(circle at 80% 20%, rgba(56, 189, 248, 0.08) 0%, transparent 50%);
         }
 
@@ -166,9 +166,12 @@
         }
 
         /* --- Layout & Sections --- */
-        section {
-            padding: 6rem 15%;
-        }
+       section {
+            padding: 4rem 15%; /* Slightly reduced top/bottom padding */
+            max-width: 1400px;
+            margin: 0 auto;
+           
+            }
 
         /* --- Experience & Education Cards --- */
         .card {
@@ -340,20 +343,23 @@
         </div>
     </nav>
 
-    <header id="hero">
-        <div data-aos="fade-up">
-            <h1 style="text-transform: none;">Sriyank Sagi</h1>
-            <p class="hero-tagline">Masters in Data Science @UMD</p>
-            <div style="display: flex; gap: 15px;">
-                <a href="mailto:sriyanksagi10@gmail.com" title="sriyanksagi10@gmail.com" style="color: var(--accent); text-decoration: none; font-weight: 600;">
-                    <i class="fas fa-envelope"></i> sriyanksagi10@gmail.com
-                </a>
-                <a href="https://www.linkedin.com/in/sagisriyank" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 600;">
-                    <i class="fab fa-linkedin"></i> LinkedIn
-                </a>
-            </div>
+<header id="hero">
+    <div data-aos="fade-up">
+        <h1 style="text-transform: none;">Sriyank Sagi</h1>
+        <p class="hero-tagline">Masters in Data Science @UMD</p>
+        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+            <a href="mailto:sriyanksagi10@gmail.com" title="sriyanksagi10@gmail.com" style="color: var(--accent); text-decoration: none; font-weight: 600;">
+                <i class="fas fa-envelope"></i> sriyanksagi10@gmail.com
+            </a>
+            <a href="https://www.linkedin.com/in/sagisriyank" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 600;">
+                <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+            <a href="https://github.com/Sriyank-s" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 600;">
+                <i class="fab fa-github"></i> GitHub
+            </a>
         </div>
-    </header>
+    </div>
+</header>
 
     <section id="about" data-aos="fade-up">
         <h2>About Me</h2>
@@ -483,6 +489,7 @@
     </script>
 </body>
 </html>
+
 
 
 
