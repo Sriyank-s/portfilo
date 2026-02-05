@@ -1,150 +1,584 @@
-<!-- force redeploy -->
-<!-- pages rebuild trigger -->
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sriyank Sagi | Portfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sriyank Sagi | Data Scientist</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Modern Dark Theme Palette */
+            --bg-color: #0f172a;       /* Slate 900 */
+            --card-bg: #1e293b;        /* Slate 800 */
+            --text-primary: #f8fafc;   /* Slate 50 */
+            --text-secondary: #94a3b8; /* Slate 400 */
+            --accent: #38bdf8;         /* Sky 400 */
+            --accent-dark: #0ea5e9;
+            --accent-glow: rgba(56, 189, 248, 0.15);
+            --border: rgba(255, 255, 255, 0.05);
+            --gradient: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-  <!-- AOS -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="style.css?v=1">
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
 
+        /* --- Typography --- */
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            display: inline-block;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        /* --- Navigation (Glassmorphism) --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .logo span { color: var(--accent); }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* --- Hero Section --- */
+        header {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 15%;
+            background: radial-gradient(circle at 80% 20%, rgba(56, 189, 248, 0.08) 0%, transparent 50%);
+        }
+
+        .hero-label {
+            color: var(--accent);
+            font-family: monospace;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .hero-desc {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 2.5rem;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 12px 28px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            border: 1px solid var(--accent);
+        }
+
+        .btn-primary {
+            background: var(--accent-glow);
+            color: var(--accent);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent);
+            color: var(--bg-color);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+        }
+
+        .btn-secondary {
+            border-color: var(--text-secondary);
+            color: var(--text-secondary);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--text-primary);
+            color: var(--text-primary);
+        }
+
+        /* --- Layout & Sections --- */
+        section {
+            padding: 6rem 15%;
+        }
+
+        /* --- Experience & Education Cards --- */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .role-title {
+            font-size: 1.3rem;
+            color: var(--text-primary);
+        }
+
+        .company-name {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .date-badge {
+            background: rgba(255,255,255,0.05);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .card ul {
+            padding-left: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        .card li {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        /* --- Projects Grid --- */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-7px);
+            border-color: var(--accent);
+        }
+
+        .folder-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .project-links {
+            float: right;
+        }
+        
+        .project-links a {
+            font-size: 1.2rem;
+            margin-left: 10px;
+        }
+
+        .project-links a:hover { color: var(--accent); }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 1.5rem;
+            font-family: monospace;
+            font-size: 0.8rem;
+        }
+
+        .tech-stack span {
+            color: var(--accent);
+        }
+
+        /* --- Skills Section --- */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category h3 {
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border);
+        }
+
+        /* --- Mobile Responsive --- */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.8rem; }
+            section { padding: 4rem 6%; }
+            header { padding: 0 6%; }
+            .nav-links { display: none; } /* Simplified for mobile */
+            .card-header { flex-direction: column; }
+        }
+    </style>
 </head>
-
 <body>
 
-<header data-aos="fade-down">
-  <h1>Sriyank Sagi</h1>
-  <p>
-    MS Data Science @ UMD | Research Assistant | Teaching Assistant | Ex-Data Scientist Intern @ Magnasoft
-  </p>
-  <p>
-    📧 <a href="mailto:sriyanksagi10@gmail.com">sriyanksagi10@gmail.com</a> |
-    📞 +1 (240) 432-3508
-  </p>
-  <p class="links">
-    <a href="https://www.linkedin.com/in/sagisriyank" target="_blank">LinkedIn</a>
-    <a href="https://github.com/Sriyank-s" target="_blank">GitHub</a>
-  </p>
-</header>
+    <nav>
+        <div class="logo">Sriyank<span>.Sagi</span></div>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#experience">Experience</a>
+            <a href="#education">Education</a>
+            <a href="#projects">Projects</a>
+            <a href="#skills">Skills</a>
+        </div>
+    </nav>
 
-<nav>
-  <a href="#about">About</a>
-  <a href="#experience">Experience</a>
-  <a href="#projects">Projects</a>
-  <a href="#skills">Skills</a>
-  <a href="#contact">Contact</a>
-</nav>
+    <header id="about">
+        <div data-aos="fade-up" data-aos-duration="1000">
+            <p class="hero-label">Hi, my name is</p>
+            <h1>Sriyank Sagi.</h1>
+            <h2 class="hero-desc" style="color: #94a3b8; font-size: 2rem; background: none; -webkit-text-fill-color: inherit; margin-top: -10px;">
+                I build scalable AI systems.
+            </h2>
+            <p class="hero-desc">
+                MS Data Science Candidate at UMD with expertise in NLP, Computer Vision, and Big Data Pipelines. 
+                Focusing on end-to-end Machine Learning solutions from training to deployment.
+            </p>
+            <div class="btn-group">
+                <a href="mailto:sriyanksagi10@gmail.com" class="btn btn-primary">Contact Me</a>
+                <a href="https://github.com/Sriyank-s" target="_blank" class="btn btn-secondary">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="https://www.linkedin.com/in/sagisriyank" target="_blank" class="btn btn-secondary">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+            </div>
+        </div>
+    </header>
 
-<section id="about" data-aos="fade-up">
-  <h2>About Me</h2>
-  <p>
-    I am a Master’s student in Data Science at the University of Maryland, College Park, with strong experience in
-    machine learning, NLP, computer vision, and scalable data systems.
-  </p>
-  <p>
-    My work focuses on building end-to-end AI systems — from data pipelines and model training to deployment and
-    visualization — across finance, healthcare, and surveillance domains.
-  </p>
-</section>
+    <section id="experience">
+        <h2 data-aos="fade-right">Professional Experience</h2>
 
-<section id="experience" data-aos="fade-up">
-  <h2>Experience</h2>
+        <div class="card" data-aos="fade-up">
+            <div class="card-header">
+                <div>
+                    <div class="role-title">Research Assistant</div>
+                    <div class="company-name">University of Maryland</div>
+                </div>
+                <div class="date-badge">Jan 2026 - Present</div>
+            </div>
+            <ul>
+                [cite_start]<li>Collected and processed large-scale customer transaction data using <strong>Spark Delta tables</strong>[cite: 4].</li>
+                [cite_start]<li>Implemented advanced NLP techniques using <strong>VADER and BERT</strong> for sentiment analysis[cite: 4].</li>
+                [cite_start]<li>Integrated a <strong>RAG sequence model</strong> for automated customer support response generation[cite: 4].</li>
+            </ul>
+        </div>
 
-  <div class="card">
-    <h3>Research Assistant — University of Maryland</h3>
-    <ul>
-      <li>Spark Delta pipelines for large-scale transaction analytics</li>
-      <li>Fraud detection and spending pattern analysis</li>
-      <li>NLP using VADER, BERT, and RAG systems</li>
-    </ul>
-  </div>
+        <div class="card" data-aos="fade-up">
+            <div class="card-header">
+                <div>
+                    <div class="role-title">Teaching Assistant - Deep Learning</div>
+                    <div class="company-name">University of Maryland</div>
+                </div>
+                <div class="date-badge">Jan 2026 - Present</div>
+            </div>
+            <ul>
+                [cite_start]<li>Leading lab sessions on <strong>CNNs, RNNs, and Transformers</strong> for graduate students[cite: 4].</li>
+                [cite_start]<li>Mentoring students in debugging <strong>PyTorch</strong> models and hyperparameter tuning[cite: 4].</li>
+                [cite_start]<li>Evaluating projects in Computer Vision and NLP, ensuring rigor in model accuracy and scalability[cite: 4].</li>
+            </ul>
+        </div>
 
-  <div class="card">
-    <h3>Teaching Assistant — Deep Learning</h3>
-    <ul>
-      <li>Labs on CNNs, RNNs, Transformers</li>
-      <li>PyTorch model debugging and optimization</li>
-      <li>Grading CV and NLP projects</li>
-    </ul>
-  </div>
+        <div class="card" data-aos="fade-up">
+            <div class="card-header">
+                <div>
+                    <div class="role-title">Data Scientist Intern</div>
+                    <div class="company-name">Magnasoft</div>
+                </div>
+                <div class="date-badge">Jan 2024 - June 2024</div>
+            </div>
+            <ul>
+                [cite_start]<li>Trained a <strong>YOLOv8</strong> model on 100,000+ aerial images for high-precision object detection[cite: 4].</li>
+                [cite_start]<li>Built a dashboard integrating OSRM-based real-time tracking and geolocation mapping[cite: 4].</li>
+                [cite_start]<li>Developed a Gait-Based Deep Learning Model for anomaly detection using spatiotemporal patches[cite: 4].</li>
+                [cite_start]<li>Achieved <strong>93.8% accuracy</strong> in real-time surveillance using OpenCV and TensorRT[cite: 4].</li>
+            </ul>
+        </div>
+    </section>
 
-  <div class="card">
-    <h3>Data Scientist Intern — Magnasoft</h3>
-    <ul>
-      <li>YOLOv8 on 100k+ aerial images</li>
-      <li>Real-time OpenCV + TensorRT pipelines</li>
-      <li>93.8% anomaly detection accuracy</li>
-    </ul>
-  </div>
-</section>
+    <section id="education">
+        <h2 data-aos="fade-right">Education</h2>
+        <div class="grid">
+            <div class="card" data-aos="zoom-in">
+                <div class="company-name">University of Maryland</div>
+                <div class="role-title">MS in Data Science</div>
+                <div class="date-badge" style="margin-top: 10px; display: inline-block;">2024 - 2026</div>
+                [cite_start]<p style="margin-top: 10px; color: var(--text-secondary);">GPA: 4.0/4.0 [cite: 4]</p>
+            </div>
+            <div class="card" data-aos="zoom-in" data-aos-delay="100">
+                <div class="company-name">Amrita Vishwa Vidyapeetham</div>
+                <div class="role-title">B.Tech in Electrical & Computer Eng.</div>
+                <div class="date-badge" style="margin-top: 10px; display: inline-block;">2020 - 2024</div>
+            </div>
+        </div>
+    </section>
 
-<section id="projects">
-  <h2 data-aos="fade-up">Projects</h2>
+    <section id="projects">
+        <h2 data-aos="fade-right">Projects</h2>
+        <div class="grid">
 
-  <div class="projects-grid">
+            <div class="project-card" data-aos="fade-up">
+                <div>
+                    <div class="project-header">
+                        <i class="far fa-folder folder-icon"></i>
+                        <span class="project-links">
+                            <a href="https://github.com/Sriyank-s" target="_blank"><i class="fab fa-github"></i></a>
+                        </span>
+                    </div>
+                    <h3 class="role-title">Market Power Price Prediction</h3>
+                    <p style="color: var(--text-secondary); margin-top: 10px; font-size: 0.9rem;">
+                        [cite_start]LSTM networks + Genetic Algorithms for time-series forecasting on 113,000+ market data samples[cite: 4].
+                    </p>
+                </div>
+                <div class="tech-stack">
+                    <span>Python</span> <span>LSTM</span> <span>Pandas</span>
+                </div>
+            </div>
 
-    <div class="project-card" data-aos="zoom-in">
-      <h3>Market Power Price Prediction</h3>
-      <p>LSTM + Genetic Algorithms on 113k+ energy market samples.</p>
-      <a href="https://github.com/Sriyank-s" target="_blank">GitHub ↗</a>
-    </div>
+            <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+                <div>
+                    <div class="project-header">
+                        <i class="far fa-folder folder-icon"></i>
+                        <span class="project-links">
+                            <a href="https://github.com/Sriyank-s" target="_blank"><i class="fab fa-github"></i></a>
+                        </span>
+                    </div>
+                    <h3 class="role-title">Fraud Detection System</h3>
+                    <p style="color: var(--text-secondary); margin-top: 10px; font-size: 0.9rem;">
+                        Random Forest & Autoencoders to detect financial anomalies. [cite_start]Optimized data retrieval with a C pipeline[cite: 4].
+                    </p>
+                </div>
+                <div class="tech-stack">
+                    <span>Python</span> <span>MySQL</span> <span>PowerBI</span>
+                </div>
+            </div>
 
-    <div class="project-card" data-aos="zoom-in" data-aos-delay="100">
-      <h3>Fraud Detection System</h3>
-      <p>Random Forest + Autoencoders with MySQL & Power BI dashboards.</p>
-      <a href="https://github.com/Sriyank-s" target="_blank">GitHub ↗</a>
-    </div>
+            <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+                <div>
+                    <div class="project-header">
+                        <i class="far fa-folder folder-icon"></i>
+                        <span class="project-links">
+                            <a href="https://github.com/Sriyank-s" target="_blank"><i class="fab fa-github"></i></a>
+                        </span>
+                    </div>
+                    <h3 class="role-title">Multilingual AI Chatbot</h3>
+                    <p style="color: var(--text-secondary); margin-top: 10px; font-size: 0.9rem;">
+                        Integrated Whisper (Speech-to-Text) and XLM-R for intent classification. [cite_start]Deployed via Docker & Streamlit[cite: 4].
+                    </p>
+                </div>
+                <div class="tech-stack">
+                    <span>Whisper</span> <span>LLM</span> <span>Docker</span>
+                </div>
+            </div>
 
-    <div class="project-card" data-aos="zoom-in" data-aos-delay="200">
-      <h3>Multilingual AI Chatbot</h3>
-      <p>Whisper + XLM-R + LLM with Docker & Streamlit deployment.</p>
-      <a href="https://github.com/Sriyank-s" target="_blank">GitHub ↗</a>
-    </div>
+            <div class="project-card" data-aos="fade-up" data-aos-delay="300">
+                <div>
+                    <div class="project-header">
+                        <i class="far fa-folder folder-icon"></i>
+                        <span class="project-links">
+                            <a href="https://github.com/Sriyank-s" target="_blank"><i class="fab fa-github"></i></a>
+                        </span>
+                    </div>
+                    <h3 class="role-title">Medibot (Medical RAG)</h3>
+                    <p style="color: var(--text-secondary); margin-top: 10px; font-size: 0.9rem;">
+                        [cite_start]End-to-end RAG pipeline using Qdrant vector DB and FastAPI to ground answers in medical literature[cite: 4].
+                    </p>
+                </div>
+                <div class="tech-stack">
+                    <span>FastAPI</span> <span>Qdrant</span> <span>Transformers</span>
+                </div>
+            </div>
 
-    <div class="project-card" data-aos="zoom-in" data-aos-delay="300">
-      <h3>Medibot (Medical RAG)</h3>
-      <p>Transformer embeddings + Qdrant + FastAPI for grounded QA.</p>
-      <a href="https://github.com/Sriyank-s" target="_blank">GitHub ↗</a>
-    </div>
+        </div>
+    </section>
 
-  </div>
-</section>
+    <section id="skills">
+        <h2 data-aos="fade-right">Technical Skills</h2>
+        <div class="skills-container" data-aos="fade-up">
+            
+            <div class="skill-category">
+                <h3>Languages</h3>
+                <div class="skill-list">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">C/C++</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">SQL</span>
+                    <span class="skill-tag">Bash</span>
+                </div>
+            </div>
 
-<section id="skills" data-aos="fade-up">
-  <h2>Skills</h2>
-  <p>
-    <strong>Python, PyTorch, Spark, NLP, Computer Vision, SQL, Docker,
-    Power BI, React, FastAPI, Transformers</strong>
-  </p>
-</section>
+            <div class="skill-category">
+                <h3>Frameworks & Libraries</h3>
+                <div class="skill-list">
+                    <span class="skill-tag">PyTorch</span>
+                    <span class="skill-tag">Spark</span>
+                    <span class="skill-tag">Hadoop</span>
+                    <span class="skill-tag">OpenCV</span>
+                    <span class="skill-tag">Transformers</span>
+                    <span class="skill-tag">React.js</span>
+                </div>
+            </div>
 
-<section id="contact" data-aos="fade-up">
-  <h2>Contact</h2>
-  <p>Email: <a href="mailto:sriyanksagi10@gmail.com">sriyanksagi10@gmail.com</a></p>
-  <p>Location: College Park, MD</p>
-</section>
+            <div class="skill-category">
+                <h3>Tools & Platforms</h3>
+                <div class="skill-list">
+                    <span class="skill-tag">Docker</span>
+                    <span class="skill-tag">Git</span>
+                    <span class="skill-tag">Power BI</span>
+                    <span class="skill-tag">MongoDB</span>
+                    <span class="skill-tag">Qdrant</span>
+                    <span class="skill-tag">Google Colab</span>
+                </div>
+            </div>
+            
+        </div>
+    </section>
 
-<footer>
-  © 2026 Sriyank Sagi
-</footer>
+    <section id="certifications" data-aos="fade-up">
+        <h2>Certifications</h2>
+        <div class="card">
+            <ul>
+                [cite_start]<li><strong>IBM Data Science Professional Certificate</strong> (IBM, 2024) [cite: 6]</li>
+                [cite_start]<li><strong>Google Data Analytics Professional Certificate</strong> (Google, 2024) [cite: 5]</li>
+                [cite_start]<li><strong>IT Automation with Python Certificate</strong> (Google, 2024) [cite: 6]</li>
+            </ul>
+        </div>
+    </section>
 
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-  AOS.init({ duration: 900, once: true });
-</script>
+    <footer>
+        <p>Built by Sriyank Sagi © 2026</p>
+        <div style="margin-top: 10px;">
+            <a href="mailto:sriyanksagi10@gmail.com" style="margin: 0 10px;">Email</a>
+            <a href="https://www.linkedin.com/in/sagisriyank" target="_blank" style="margin: 0 10px;">LinkedIn</a>
+            <a href="https://github.com/Sriyank-s" target="_blank" style="margin: 0 10px;">GitHub</a>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+    </script>
 
 </body>
 </html>
-
-
-
